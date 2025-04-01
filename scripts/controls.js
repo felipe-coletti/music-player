@@ -1,7 +1,7 @@
 import { audioPlayer, isValidId, playCurrentTrack, formatTime, volumeControl, playTrack } from './utils.js'
 import { renderPlaylist } from './playlist.js'
 import { playlistState, setPlaylistOrder, toggleShuffle, toggleLoop as loopPlaylist } from './playlistState.js'
-import { musicState, toggleLoop as loopMusic, setVolume } from './musicState.js'
+import { trackState, toggleLoop as loopTrack, setVolume } from './trackState.js'
 
 const playButtons = document.querySelectorAll('.play-button')
 const playPlaylistButton = document.getElementById('playlist-play-button')
@@ -103,7 +103,7 @@ export const setupControlEvents = () => {
         button.addEventListener('click', shuffle)
     })
     loopPlaylistButton.addEventListener('click', loopPlaylist)
-    loopTrackButton.addEventListener('click', loopMusic)
+    loopTrackButton.addEventListener('click', loopTrack)
 }
 
 export const setupAudioEvents = () => {
@@ -133,7 +133,7 @@ export const setupAudioEvents = () => {
     audioPlayer.addEventListener('ended', () => {
         const currentTrackIndex = playlistState.playlistOrder.indexOf(playlistState.currentTrackId)
 
-        if (musicState.isLooping) {
+        if (trackState.isLooping) {
             audioPlayer.play()
         } else if (currentTrackIndex < playlistState.playlistOrder.length - 1) {
             next()

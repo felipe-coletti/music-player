@@ -1,11 +1,11 @@
 import { renderPlaylist } from './playlist.js'
-import { musicState } from './musicState.js'
+import { trackState } from './trackState.js'
 import { playlistState, setCurrentTrackId } from './playlistState.js'
 
 export const audioPlayer = document.getElementById('audio-player')
 const player = document.getElementById('player')
 const trackCover = document.querySelector('#player .track-cover')
-const musicName = document.getElementById('music-name')
+const trackName = document.getElementById('track-name')
 const artistName = document.getElementById('artist-name')
 export const volumeControl = document.getElementById('volume-control')
 
@@ -32,7 +32,7 @@ export const updateTrackInfo = (track) => {
         trackCover.src = 'assets/images/default-cover.jpg'
     }
 
-    musicName.textContent = track.name
+    trackName.textContent = track.name
     artistName.textContent = track.artist
 }
 
@@ -44,7 +44,7 @@ export const playTrack = (trackId) => {
     if (!track) return
 
     audioPlayer.src = track.src
-    audioPlayer.volume = musicState.volume
+    audioPlayer.volume = trackState.volume
 
     updateTrackInfo(track)
 

@@ -36,7 +36,7 @@
                     >
                         Play
                     </button>
-                    <button type="button" class="ghost-button icon-button button" onclick="toggleModal()">Add</button>
+                    <button type="button" id="open-modal" class="ghost-button icon-button button">Add</button>
                     <button type="button" class="shuffle-button ghost-button icon-button button">Shuf</button>
                     <button type="button" id="playlist-loop-button" class="ghost-button icon-button button">
                         Loop
@@ -49,7 +49,7 @@
                     <div class="track-info">
                         <img class="track-cover cover" loading="lazy" />
                         <div class="track-text">
-                            <h1 id="music-name" class="secondary-title title"></h1>
+                            <h1 id="track-name" class="secondary-title title"></h1>
                             <p id="artist-name" class="paragraph"></p>
                         </div>
                     </div>
@@ -84,16 +84,16 @@
             </div>
             <div id="modal-container">
                 <div class="modal">
-                    <button type="button" class="ghost-button icon-button button" onclick="toggleModal()">Close</button>
+                    <button type="button" id="close-modal" class="ghost-button icon-button button">Close</button>
                     <h1 class="primary-title title">Adicionar música</h1>
                     <form id="add-track-form" class="form">
                         <label class="label">
                             Capa da música
-                            <input id="music-cover-input" class="text-input full-width" />
+                            <input id="track-cover-input" class="text-input full-width" />
                         </label>
                         <label class="label">
                             Nome da música
-                            <input id="music-name-input" class="text-input full-width" required />
+                            <input id="track-name-input" class="text-input full-width" required />
                         </label>
                         <label class="label">
                             Nome do artista
@@ -101,7 +101,7 @@
                         </label>
                         <label class="label">
                             Caminho da música
-                            <input id="music-src-input" class="text-input full-width" required />
+                            <input id="track-src-input" class="text-input full-width" required />
                         </label>
                         <button type="submit" class="filled-button text-button button full-width">Adicionar</button>
                     </form>

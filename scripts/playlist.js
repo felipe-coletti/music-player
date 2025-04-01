@@ -5,13 +5,13 @@ const playlistElement = document.getElementById('playlist-content')
 const playlistInfo = document.getElementById('playlist-info')
 const playlistCover = document.getElementById('playlist-cover')
 const modalContainer = document.getElementById('modal-container')
-const musicCoverInput = document.getElementById('music-cover-input')
-const musicNameInput = document.getElementById('music-name-input')
+const trackCoverInput = document.getElementById('track-cover-input')
+const trackNameInput = document.getElementById('track-name-input')
 const artistNameInput = document.getElementById('artist-name-input')
-const musicSrcInput = document.getElementById('music-src-input')
+const trackSrcInput = document.getElementById('track-src-input')
 
 export const handleAddTrack = () => {
-    if (!musicSrcInput.value || !musicNameInput.value || !artistNameInput.value) {
+    if (!trackSrcInput.value || !trackNameInput.value || !artistNameInput.value) {
         alert('Preencha todos os campos obrigatórios!')
         return
     }
@@ -21,10 +21,10 @@ export const handleAddTrack = () => {
             playlistState.playlist.length > 0
                 ? playlistState.playlist[playlistState.playlist.length - 1].id + 1 * Date.now()
                 : 0,
-        src: musicSrcInput.value,
-        name: musicNameInput.value,
+        src: trackSrcInput.value,
+        name: trackNameInput.value,
         artist: artistNameInput.value,
-        cover: musicCoverInput.value,
+        cover: trackCoverInput.value,
     }
 
     addTrack(track)
@@ -34,10 +34,10 @@ export const handleAddTrack = () => {
         modalContainer.classList.remove('open')
     }
 
-    musicCoverInput.value = ''
-    musicNameInput.value = ''
+    trackCoverInput.value = ''
+    trackNameInput.value = ''
     artistNameInput.value = ''
-    musicSrcInput.value = ''
+    trackSrcInput.value = ''
 }
 
 document.getElementById('add-track-form').addEventListener('submit', (e) => {
