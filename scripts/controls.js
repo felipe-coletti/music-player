@@ -15,7 +15,7 @@ const progressBar = document.getElementById('progress-bar')
 const currentTimeDisplay = document.getElementById('current-time')
 const totalTimeDisplay = document.getElementById('total-time')
 
-export const playPlaylist = () => {
+const playPlaylist = () => {
     if (isValidId(playlistState.currentTrackId)) {
         play()
     } else if (playlistState.playlistOrder.length > 0) {
@@ -30,7 +30,7 @@ const updatePlayButtons = (isPaused) => {
     })
 }
 
-export const play = () => {
+const play = () => {
     if (!audioPlayer.src) {
         if (isValidId(playlistState.currentTrackId)) {
             playCurrentTrack()
@@ -46,7 +46,7 @@ export const play = () => {
     }
 }
 
-export const previous = () => {
+const previous = () => {
     const currentTrackIndex = playlistState.playlistOrder.indexOf(playlistState.currentTrackId)
 
     if (currentTrackIndex > 0) {
@@ -55,7 +55,7 @@ export const previous = () => {
     }
 }
 
-export const next = () => {
+const next = () => {
     const currentTrackIndex = playlistState.playlistOrder.indexOf(playlistState.currentTrackId)
 
     if (currentTrackIndex === playlistState.playlistOrder.length - 1) {
@@ -71,7 +71,7 @@ export const next = () => {
     }
 }
 
-export const shuffle = () => {
+const shuffle = () => {
     toggleShuffle()
 
     if (playlistState.isShuffle) {
