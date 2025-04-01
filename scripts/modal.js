@@ -1,5 +1,14 @@
-function toggleModal() {
-    const modalContainer = document.getElementById('modal-container')
+const modalContainer = document.getElementById('modal-container')
+const openModalButton = document.getElementById('open-modal')
+const closeModalButton = document.getElementById('close-modal')
 
-    modalContainer.classList.toggle('open')
+const openModal = () => {
+    modalContainer.classList.add('open')
 }
+
+const closeModal = () => {
+    modalContainer.classList.remove('open')
+}
+
+openModalButton.addEventListener('click', openModal)
+closeModalButton.addEventListener('click', closeModal)
