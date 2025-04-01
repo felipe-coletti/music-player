@@ -6,7 +6,7 @@ const openModal = () => {
     modalContainer.classList.add('open')
 }
 
-const closeModal = () => {
+export const closeModal = () => {
     modalContainer.classList.remove('open')
 }
 
