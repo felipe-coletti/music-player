@@ -60,10 +60,6 @@ export const playTrack = (trackId) => {
     renderPlaylist()
 }
 
-const updatePlayerVisibility = () => {
-    if (isValidId(playlistState.currentTrackId)) {
-        player.classList.add('open')
-    } else {
-        player.classList.remove('open')
-    }
+export const updatePlayerVisibility = () => {
+    player.classList.toggle('open', isValidId(playlistState.currentTrackId))
 }

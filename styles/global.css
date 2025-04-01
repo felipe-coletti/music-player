@@ -37,7 +37,7 @@
 }
 
 .playlist-info {
-    align-items: center;
+    align-items: end;
     display: flex;
     gap: 1rem;
 }
@@ -197,6 +197,7 @@
 
 @media screen and (max-width: 800px) {
     .playlist-info {
+        align-items: center;
         flex-direction: column;
         width: 100%;
     }

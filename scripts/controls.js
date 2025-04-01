@@ -2,6 +2,7 @@ import { audioPlayer, isValidId, playCurrentTrack, formatTime, volumeControl, pl
 import { renderPlaylist } from './playlist.js'
 import { playlistState, setPlaylistOrder, toggleShuffle, toggleLoop as loopPlaylist } from './playlistState.js'
 import { trackState, toggleLoop as loopTrack, setVolume } from './trackState.js'
+import { updateRangeProgress } from './slider.js'
 
 const playButtons = document.querySelectorAll('.play-button')
 const playPlaylistButton = document.getElementById('playlist-play-button')
@@ -12,8 +13,8 @@ const shuffleButtons = document.querySelectorAll('.shuffle-button')
 const loopPlaylistButton = document.getElementById('playlist-loop-button')
 const loopTrackButton = document.getElementById('track-loop-button')
 const progressBar = document.getElementById('progress-bar')
-const currentTimeDisplay = document.getElementById('current-time')
-const totalTimeDisplay = document.getElementById('total-time')
+export const currentTimeDisplay = document.getElementById('current-time')
+export const totalTimeDisplay = document.getElementById('total-time')
 
 const playPlaylist = () => {
     if (isValidId(playlistState.currentTrackId)) {

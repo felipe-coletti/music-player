@@ -1,6 +1,6 @@
 const sliders = document.querySelectorAll('.slider')
 
-function updateRangeProgress(slider) {
+export const updateRangeProgress = (slider) => {
     const value = slider.value
     const min = slider.min
     const max = slider.max

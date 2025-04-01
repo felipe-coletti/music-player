@@ -1,24 +1,42 @@
-import { audioPlayer, volumeControl } from './utils.js'
+import { audioPlayer, volumeControl, formatTime, isValidId, updateTrackInfo, updatePlayerVisibility } from './utils.js'
 import { renderPlaylist } from './playlist.js'
-import { loadPlaylist } from './playlistState.js'
-import { setupControlEvents, setupAudioEvents } from './controls.js'
+import { playlistState, loadPlaylist } from './playlistState.js'
+import { currentTimeDisplay, totalTimeDisplay, setupControlEvents, setupAudioEvents } from './controls.js'
 import { trackState } from './trackState.js'
+import { updateRangeProgress } from './slider.js'
 
 const fetchPlaylist = () => {
     loadPlaylist()
     renderPlaylist()
 }
 
-const initApp = () => {
-    fetchPlaylist()
-
+const loadVolume = () => {
     audioPlayer.volume = trackState.volume
     volumeControl.value = trackState.volume * 100
     audioPlayer.loop = trackState.isLooping
 
     updateRangeProgress(volumeControl)
+}
+
+const initApp = () => {
+    fetchPlaylist()
+    loadVolume()
     setupControlEvents()
     setupAudioEvents()
+
+    if (playlistState.currentTrackId && isValidId(playlistState.currentTrackId)) {
+        const track = playlistState.playlist.find((track) => track.id === playlistState.currentTrackId)
+
+        updateTrackInfo(track)
+
+        if (!audioPlayer.src) {
+            audioPlayer.src = track.src
+        }
+
+        currentTimeDisplay.textContent = formatTime(0)
+        totalTimeDisplay.textContent = formatTime(0)
+        updatePlayerVisibility()
+    }
 }
 
 document.addEventListener('DOMContentLoaded', initApp)
