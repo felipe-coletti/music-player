@@ -10,9 +10,15 @@ const artistName = document.getElementById('artist-name')
 export const volumeControl = document.getElementById('volume-control')
 
 export const formatTime = (seconds) => {
-    const minutes = Math.floor(seconds / 60)
+    const hours = Math.floor(seconds / 3600)
+    const minutes = Math.floor((seconds % 3600) / 60)
     const remainingSeconds = Math.floor(seconds % 60)
-    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`
+
+    if (hours > 0) {
+        return `${hours}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`
+    }
+
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`
 }
 
 export const isValidId = (id) => playlistState.playlistOrder.includes(id)

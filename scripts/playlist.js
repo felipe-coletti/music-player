@@ -1,5 +1,6 @@
 import { isValidId, playTrack, formatTime } from './utils.js'
 import { playlistState, addTrack, removeTrack } from './playlistState.js'
+import { closeModal } from './modal.js'
 
 const playlistElement = document.getElementById('playlist-content')
 const playlistInfo = document.getElementById('playlist-info')
@@ -30,9 +31,7 @@ export const handleAddTrack = () => {
     addTrack(track)
     renderPlaylist()
 
-    if (modalContainer.classList.contains('open')) {
-        modalContainer.classList.remove('open')
-    }
+    closeModal()
 
     trackCoverInput.value = ''
     trackNameInput.value = ''
@@ -66,15 +65,18 @@ const updatePlaylistCover = () => {
 
 export const renderPlaylist = () => {
     const fragment = document.createDocumentFragment()
+    let playlistDuration = 0
+    const durationPromises = []
 
     playlistState.playlist.forEach((track, index) => {
         const listItem = document.createElement('li')
+        const isPlaying = track.id === playlistState.currentTrackId
 
         listItem.classList.add('track')
-        track.id === playlistState.currentTrackId && listItem.classList.add('playing')
+        if (isPlaying) listItem.classList.add('playing')
 
         listItem.innerHTML = `
-            <p class="paragraph">${index + 1}</p>
+            <p class="paragraph">${isPlaying ? 'P' : index + 1}</p>
             <div class="track-info">
                 <img class="track-cover cover" loading="lazy" />
                 <div class="track-text">
@@ -88,12 +90,24 @@ export const renderPlaylist = () => {
             </div>
         `
 
+        listItem.querySelector('.track-cover').src = 'assets/images/default-cover.jpg'
+
+        if (track.cover) {
+            listItem.querySelector('.track-cover').src = track.cover
+        }
+
         const audio = new Audio(track.src)
 
-        audio.addEventListener('loadedmetadata', () => {
-            const durationElement = listItem.querySelector('.track-duration')
-            durationElement.textContent = formatTime(audio.duration)
+        const durationPromise = new Promise((resolve) => {
+            audio.addEventListener('loadedmetadata', () => {
+                const durationElement = listItem.querySelector('.track-duration')
+                durationElement.textContent = formatTime(audio.duration)
+                playlistDuration += audio.duration
+                resolve()
+            })
         })
+
+        durationPromises.push(durationPromise)
 
         listItem.setAttribute('data-track-id', track.id)
         listItem.addEventListener('click', (e) => {
@@ -101,12 +115,6 @@ export const renderPlaylist = () => {
                 playTrack(track.id)
             }
         })
-
-        listItem.querySelector('.track-cover').src = 'assets/images/default-cover.jpg'
-
-        if (track.cover) {
-            listItem.querySelector('.track-cover').src = track.cover
-        }
 
         fragment.appendChild(listItem)
     })
@@ -120,6 +128,12 @@ export const renderPlaylist = () => {
         trackIndexInPlaylist >= 0
             ? `${trackIndexInPlaylist + 1} / ${playlistState.playlist.length}`
             : `${playlistState.playlist.length}`
+
+    Promise.all(durationPromises).then(() => {
+        if (playlistDuration > 0) {
+            playlistInfo.textContent += `, ${formatTime(playlistDuration)}`
+        }
+    })
 
     updatePlaylistCover()
 }
