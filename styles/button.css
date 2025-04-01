@@ -1,0 +1,36 @@
+.filled-button {
+    background-color: var(--color-accent);
+    color: var(--color-background);
+}
+
+.ghost-button {
+    background-color: transparent;
+    color: var(--color-secondary-text);
+}
+
+.ghost-button:hover {
+    background-color: var(--color-hover);
+}
+
+.icon-button {
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    padding: 0.5rem;
+}
+
+.text-button {
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: bold;
+    padding-block: 0.75rem;
+    padding-inline: 1rem;
+}
+
+.button {
+    border: none;
+    cursor: pointer;
+}
+
+.button.active {
+    color: var(--color-accent);
+}

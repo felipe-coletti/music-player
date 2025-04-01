@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
+        <title>Music player</title>
+        <link rel="stylesheet" href="styles/global.css" />
+        <link rel="stylesheet" href="styles/button.css" />
+        <link rel="stylesheet" href="styles/input.css" />
+        <link rel="stylesheet" href="styles/slider.css" />
+        <link rel="stylesheet" href="styles/track.css" />
+        <script src="scripts/slider.js" defer></script>
+        <script type="module" src="scripts/app.js" defer></script>
+        <script src="scripts/modal.js" defer></script>
+    </head>
+    <body>
+        <main id="main">
+            <div id="playlist-header">
+                <div class="playlist-info">
+                    <img id="playlist-cover" class="cover" loading="lazy" />
+                    <div class="track-text">
+                        <h2 class="primary-title title">Playlist</h2>
+                        <p id="playlist-info" class="paragraph"></p>
+                    </div>
+                </div>
+            </div>
+            <div id="playlist-title">
+                <audio id="audio-player"></audio>
+                <div class="button-group">
+                    <button
+                        type="button"
+                        id="playlist-play-button"
+                        class="play-button filled-button icon-button button"
+                    >
+                        Play
+                    </button>
+                    <button type="button" class="ghost-button icon-button button" onclick="toggleModal()">Add</button>
+                    <button type="button" class="shuffle-button ghost-button icon-button button">Shuf</button>
+                    <button type="button" id="playlist-loop-button" class="ghost-button icon-button button">
+                        Loop
+                    </button>
+                </div>
+            </div>
+            <ul id="playlist-content"></ul>
+            <div id="player">
+                <div class="distributor">
+                    <div class="track-info">
+                        <img class="track-cover cover" loading="lazy" />
+                        <div class="track-text">
+                            <h1 id="music-name" class="secondary-title title"></h1>
+                            <p id="artist-name" class="paragraph"></p>
+                        </div>
+                    </div>
+                    <div class="track-text">
+                        <div class="distributor">
+                            <button type="button" class="shuffle-button ghost-button icon-button button">Shuf</button>
+                            <button type="button" id="previous-button" class="ghost-button icon-button button">
+                                Prev
+                            </button>
+                            <button
+                                type="button"
+                                id="track-play-button"
+                                class="play-button ghost-button icon-button button"
+                            >
+                                Play
+                            </button>
+                            <button type="button" id="next-button" class="ghost-button icon-button button">Next</button>
+                            <button type="button" id="track-loop-button" class="ghost-button icon-button button">
+                                Loop
+                            </button>
+                        </div>
+                        <div class="button-group">
+                            <span id="current-time" class="paragraph"></span>
+                            <input type="range" id="progress-bar" class="slider" value="0" max="100" step="0.1" />
+                            <span id="total-time" class="paragraph"></span>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <input type="range" id="volume-control" class="slider" min="0" max="100" />
+                    </div>
+                </div>
+            </div>
+            <div id="modal-container">
+                <div class="modal">
+                    <button type="button" class="ghost-button icon-button button" onclick="toggleModal()">Close</button>
+                    <h1 class="primary-title title">Adicionar música</h1>
+                    <form id="add-track-form" class="form">
+                        <label class="label">
+                            Capa da música
+                            <input id="music-cover-input" class="text-input full-width" />
+                        </label>
+                        <label class="label">
+                            Nome da música
+                            <input id="music-name-input" class="text-input full-width" required />
+                        </label>
+                        <label class="label">
+                            Nome do artista
+                            <input id="artist-name-input" class="text-input full-width" required />
+                        </label>
+                        <label class="label">
+                            Caminho da música
+                            <input id="music-src-input" class="text-input full-width" required />
+                        </label>
+                        <button type="submit" class="filled-button text-button button full-width">Adicionar</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
