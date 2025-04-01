@@ -1,3 +1,5 @@
+import { updatePlayerVisibility } from './utils.js'
+
 const STORAGE_KEY = 'playlistState'
 
 const shuffleButtons = document.querySelectorAll('.shuffle-button')
@@ -78,15 +80,17 @@ export const addTrack = (track) => {
 }
 
 export const removeTrack = (trackId) => {
-    const trackIndex = playlistState.playlist.findIndex((track) => track.id === parseInt(trackId))
+    playlistState.playlist = playlistState.playlist.filter((track) => track.id !== trackId)
+    playlistState.playlistOrder = playlistState.playlistOrder.filter((id) => id !== trackId)
 
-    if (trackIndex !== -1) {
-        playlistState.playlist.splice(trackIndex, 1)
-
-        playlistState.playlistOrder = playlistState.playlistOrder.filter((id) => id !== trackId)
-
-        savePlaylist()
+    if (playlistState.currentTrackId === trackId) {
+        playlistState.currentTrackId = null
+        audioPlayer.src = ''
+        updateTrackInfo(null)
+        updatePlayerVisibility()
     }
+
+    savePlaylist()
 }
 
 loadPlaylist()

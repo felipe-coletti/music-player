@@ -22,10 +22,10 @@ export const handleAddTrack = () => {
             playlistState.playlist.length > 0
                 ? playlistState.playlist[playlistState.playlist.length - 1].id + 1 * Date.now()
                 : 0,
-        src: trackSrcInput.value,
+        src: trackSrcInput.value.replace(/^"|"$/g, ''),
         name: trackNameInput.value,
         artist: artistNameInput.value,
-        cover: trackCoverInput.value,
+        cover: trackCoverInput.value || 'assets/images/default-cover.jpg',
     }
 
     addTrack(track)
@@ -142,7 +142,7 @@ playlistElement.addEventListener('click', (e) => {
     if (e.target.classList.contains('remove-button')) {
         e.stopPropagation()
 
-        const trackIdToRemove = e.target.closest('.track').dataset.trackId
+        const trackIdToRemove = Number(e.target.closest('.track').dataset.trackId)
 
         removeTrack(trackIdToRemove)
         renderPlaylist()
