@@ -6,7 +6,7 @@ import { updateRangeProgress } from './slider.js'
 
 const playButtons = document.querySelectorAll('.play-button')
 const playPlaylistButton = document.getElementById('playlist-play-button')
-const playTrackButton = document.getElementById('track-play-button')
+const playTrackButtons = document.querySelectorAll('.track-play-button')
 const previousButton = document.getElementById('previous-button')
 const nextButton = document.getElementById('next-button')
 const shuffleButtons = document.querySelectorAll('.shuffle-button')
@@ -97,7 +97,9 @@ const shuffle = () => {
 
 export const setupControlEvents = () => {
     playPlaylistButton.addEventListener('click', playPlaylist)
-    playTrackButton.addEventListener('click', play)
+    playTrackButtons.forEach((button) => {
+        button.addEventListener('click', play)
+    })
     previousButton.addEventListener('click', previous)
     nextButton.addEventListener('click', next)
     shuffleButtons.forEach((button) => {

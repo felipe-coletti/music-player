@@ -46,7 +46,8 @@
     height: 200px;
 }
 
-.track-text {
+.track-text,
+.controls {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
@@ -101,25 +102,24 @@
     bottom: 0;
     box-shadow: 0 -2px 5px 0 var(--color-hover);
     display: none;
+    flex-direction: column;
     left: 0;
-    padding: 1rem;
     position: sticky;
     width: 100%;
     z-index: 1;
 }
 
+#player-content {
+    padding: 1rem;
+}
+
+#player-content,
 .distributor {
     align-items: center;
     display: flex;
     gap: 1rem;
     justify-content: space-between;
     width: 100%;
-}
-
-.track-info {
-    align-items: center;
-    display: flex;
-    gap: 0.5rem;
 }
 
 .track-cover {
@@ -133,6 +133,13 @@
 
 #progress-bar {
     width: 100%;
+}
+
+.track-info,
+#volume-container {
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
 }
 
 #modal-container {
@@ -191,6 +198,10 @@
     width: 100%;
 }
 
+.mobile {
+    display: none !important;
+}
+
 .open {
     display: flex !important;
 }
@@ -208,5 +219,14 @@
 
     .track .ghost-button {
         visibility: visible !important;
+    }
+
+    .controls,
+    #volume-container {
+        display: none;
+    }
+
+    .mobile {
+        display: flex !important;
     }
 }

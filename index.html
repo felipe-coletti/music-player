@@ -45,7 +45,7 @@
             </div>
             <ul id="playlist-content"></ul>
             <div id="player">
-                <div class="distributor">
+                <div id="player-content">
                     <div class="track-info">
                         <img class="track-cover cover" loading="lazy" />
                         <div class="track-text">
@@ -53,17 +53,13 @@
                             <p id="artist-name" class="paragraph"></p>
                         </div>
                     </div>
-                    <div class="track-text">
+                    <div class="controls">
                         <div class="distributor">
                             <button type="button" class="shuffle-button ghost-button icon-button button">Shuf</button>
                             <button type="button" id="previous-button" class="ghost-button icon-button button">
                                 Prev
                             </button>
-                            <button
-                                type="button"
-                                id="track-play-button"
-                                class="play-button ghost-button icon-button button"
-                            >
+                            <button type="button" class="track-play-button play-button ghost-button icon-button button">
                                 Play
                             </button>
                             <button type="button" id="next-button" class="ghost-button icon-button button">Next</button>
@@ -77,10 +73,14 @@
                             <span id="total-time" class="paragraph"></span>
                         </div>
                     </div>
-                    <div class="button-group">
+                    <div id="volume-container">
                         <input type="range" id="volume-control" class="slider" min="0" max="100" />
                     </div>
+                    <button type="button" class="track-play-button play-button ghost-button icon-button button mobile">
+                        Play
+                    </button>
                 </div>
+                <span id="progress-bar" class="mobile"></span>
             </div>
             <div id="modal-container">
                 <div class="modal">
