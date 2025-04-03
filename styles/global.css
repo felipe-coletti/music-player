@@ -180,12 +180,6 @@
     width: 100%;
 }
 
-.modal .ghost-button {
-    position: absolute;
-    left: calc(100% + 1rem);
-    top: 0;
-}
-
 .modal .primary-title {
     text-align: center;
 }
