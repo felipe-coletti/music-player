@@ -7,15 +7,15 @@ import { updateRangeProgress } from './slider.js'
 const playButtons = document.querySelectorAll('.play-button')
 const playPlaylistButton = document.getElementById('playlist-play-button')
 const playTrackButtons = document.querySelectorAll('.track-play-button')
-const previousButton = document.getElementById('previous-button')
-const nextButton = document.getElementById('next-button')
-const shuffleButtons = document.querySelectorAll('.shuffle-button')
-const loopPlaylistButton = document.getElementById('playlist-loop-button')
-const loopTrackButton = document.getElementById('track-loop-button')
-const progressBar = document.getElementById('progress-bar')
+const previousButtons = document.querySelectorAll('.previous-button')
+const nextButtons = document.querySelectorAll('.next-button')
+export const shuffleButtons = document.querySelectorAll('.shuffle-button')
+export const playlistLoopButton = document.getElementById('playlist-loop-button')
+export const trackLoopButtons = document.querySelectorAll('.track-loop-button')
+const trackSliders = document.querySelectorAll('.track-slider')
 const trackProgressInner = document.getElementById('track-progress-inner')
-export const currentTimeDisplay = document.getElementById('current-time')
-export const totalTimeDisplay = document.getElementById('total-time')
+export const currentTimeDisplays = document.querySelectorAll('.current-time')
+export const totalTimeDisplays = document.querySelectorAll('.total-time')
 
 const playPlaylist = () => {
     if (isValidId(playlistState.currentTrackId)) {
@@ -101,36 +101,54 @@ export const setupControlEvents = () => {
     playTrackButtons.forEach((button) => {
         button.addEventListener('click', play)
     })
-    previousButton.addEventListener('click', previous)
-    nextButton.addEventListener('click', next)
+    previousButtons.forEach((button) => {
+        button.addEventListener('click', previous)
+    })
+    nextButtons.forEach((button) => {
+        button.addEventListener('click', next)
+    })
     shuffleButtons.forEach((button) => {
         button.addEventListener('click', shuffle)
     })
-    loopPlaylistButton.addEventListener('click', loopPlaylist)
-    loopTrackButton.addEventListener('click', loopTrack)
+    playlistLoopButton.addEventListener('click', loopPlaylist)
+    trackLoopButtons.forEach((button) => {
+        button.addEventListener('click', loopTrack)
+    })
 }
 
 export const setupAudioEvents = () => {
     audioPlayer.addEventListener('loadedmetadata', () => {
-        totalTimeDisplay.textContent = formatTime(audioPlayer.duration)
+        totalTimeDisplays.forEach((display) => {
+            display.textContent = formatTime(audioPlayer.duration)
+        })
     })
 
     audioPlayer.addEventListener('timeupdate', () => {
         if (!audioPlayer.duration) return
 
         const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100
-        progressBar.value = progress
+        trackSliders.forEach((slider) => {
+            slider.value = progress
+        })
         trackProgressInner.style.width = `${progress}%`
 
-        currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime)
-        totalTimeDisplay.textContent = formatTime(audioPlayer.duration)
+        currentTimeDisplays.forEach((display) => {
+            display.textContent = formatTime(audioPlayer.currentTime)
+        })
+        totalTimeDisplays.forEach((display) => {
+            display.textContent = formatTime(audioPlayer.duration)
+        })
 
-        updateRangeProgress(progressBar)
+        trackSliders.forEach((slider) => {
+            updateRangeProgress(slider)
+        })
     })
 
-    progressBar.addEventListener('input', (e) => {
-        const seekTime = (e.target.value / 100) * audioPlayer.duration
-        audioPlayer.currentTime = seekTime
+    trackSliders.forEach((slider) => {
+        slider.addEventListener('input', (e) => {
+            const seekTime = (e.target.value / 100) * audioPlayer.duration
+            audioPlayer.currentTime = seekTime
+        })
     })
 
     volumeControl.addEventListener('input', (e) => setVolume(e.target.value / 100))

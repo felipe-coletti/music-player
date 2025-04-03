@@ -1,8 +1,7 @@
 import { audioPlayer } from './utils.js'
+import { trackLoopButtons as loopButtons } from './controls.js'
 
 const STORAGE_KEY = 'trackState'
-
-const loopButton = document.getElementById('track-loop-button')
 
 export const trackState = {
     isLooping: false,
@@ -25,7 +24,9 @@ export const toggleLoop = () => {
     trackState.isLooping = !trackState.isLooping
     audioPlayer.loop = trackState.isLooping
 
-    loopButton.classList.toggle('active', trackState.isLooping)
+    loopButtons.forEach((button) => {
+        button.classList.toggle('active', trackState.isLooping)
+    })
 
     saveState()
 }

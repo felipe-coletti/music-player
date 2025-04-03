@@ -4,9 +4,9 @@ import { playlistState, setCurrentTrackId } from './playlistState.js'
 
 export const audioPlayer = document.getElementById('audio-player')
 const player = document.getElementById('player')
-const trackCover = document.querySelector('#player .track-cover')
-const trackName = document.getElementById('track-name')
-const artistName = document.getElementById('artist-name')
+const currentTrackCovers = document.querySelectorAll('.current-track-cover')
+const trackNames = document.querySelectorAll('.track-name')
+const artistNames = document.querySelectorAll('.artist-name')
 export const volumeControl = document.getElementById('volume-control')
 
 export const formatTime = (seconds) => {
@@ -30,16 +30,24 @@ export const updateTrackInfo = (track) => {
     image.src = track.cover || 'assets/images/default-cover.jpg'
 
     image.onload = () => {
-        trackCover.src = image.src
+        currentTrackCovers.forEach((trackCover) => {
+            trackCover.src = image.src
+        })
     }
 
     image.onerror = () => {
         console.warn('Capa inválida')
-        trackCover.src = 'assets/images/default-cover.jpg'
+        currentTrackCovers.forEach((trackCover) => {
+            trackCover.src = 'assets/images/default-cover.jpg'
+        })
     }
 
-    trackName.textContent = track.name
-    artistName.textContent = track.artist
+    trackNames.forEach((trackName) => {
+        trackName.textContent = track.name
+    })
+    artistNames.forEach((artistName) => {
+        artistName.textContent = track.artist
+    })
 }
 
 export const playTrack = (trackId) => {

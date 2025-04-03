@@ -1,7 +1,7 @@
 import { audioPlayer, volumeControl, formatTime, isValidId, updateTrackInfo, updatePlayerVisibility } from './utils.js'
 import { renderPlaylist } from './playlist.js'
 import { playlistState, loadPlaylist } from './playlistState.js'
-import { currentTimeDisplay, totalTimeDisplay, setupControlEvents, setupAudioEvents } from './controls.js'
+import { currentTimeDisplays, totalTimeDisplays, setupControlEvents, setupAudioEvents } from './controls.js'
 import { trackState } from './trackState.js'
 import { updateRangeProgress } from './slider.js'
 
@@ -33,8 +33,12 @@ const initApp = () => {
             audioPlayer.src = track.src
         }
 
-        currentTimeDisplay.textContent = formatTime(0)
-        totalTimeDisplay.textContent = formatTime(0)
+        currentTimeDisplays.forEach((display) => {
+            display.textContent = formatTime(0)
+        })
+        totalTimeDisplays.forEach((display) => {
+            display.textContent = formatTime(0)
+        })
         updatePlayerVisibility()
     }
 }

@@ -47,30 +47,28 @@
             <div id="player">
                 <div id="player-content">
                     <div class="track-info">
-                        <img class="track-cover cover" loading="lazy" />
+                        <img class="current-track-cover track-cover cover" loading="lazy" />
                         <div class="track-text">
-                            <h1 id="track-name" class="secondary-title title"></h1>
-                            <p id="artist-name" class="paragraph"></p>
+                            <h1 class="track-name secondary-title title"></h1>
+                            <p class="artist-name paragraph"></p>
                         </div>
                     </div>
                     <div class="controls">
                         <div class="distributor">
                             <button type="button" class="shuffle-button ghost-button icon-button button">Shuf</button>
-                            <button type="button" id="previous-button" class="ghost-button icon-button button">
-                                Prev
-                            </button>
+                            <button type="button" class="previous-button ghost-button icon-button button">Prev</button>
                             <button type="button" class="track-play-button play-button ghost-button icon-button button">
                                 Play
                             </button>
-                            <button type="button" id="next-button" class="ghost-button icon-button button">Next</button>
-                            <button type="button" id="track-loop-button" class="ghost-button icon-button button">
+                            <button type="button" class="next-button ghost-button icon-button button">Next</button>
+                            <button type="button" class="track-loop-button ghost-button icon-button button">
                                 Loop
                             </button>
                         </div>
                         <div class="button-group">
-                            <span id="current-time" class="paragraph"></span>
-                            <input type="range" id="progress-bar" class="slider" value="0" max="100" step="0.1" />
-                            <span id="total-time" class="paragraph"></span>
+                            <span class="current-time paragraph"></span>
+                            <input type="range" class="track-slider slider" value="0" max="100" step="0.1" />
+                            <span class="total-time paragraph"></span>
                         </div>
                     </div>
                     <div id="volume-container">
@@ -109,6 +107,32 @@
                         </label>
                         <button type="submit" class="filled-button text-button button full-width">Adicionar</button>
                     </form>
+                </div>
+            </div>
+            <div id="mobile-player" class="modal">
+                <div class="button-group">
+                    <button type="button" class="ghost-button icon-button button" onclick="">Minimize</button>
+                </div>
+                <img class="current-track-cover track-cover cover" loading="lazy" />
+                <div class="track-text">
+                    <h1 class="track-name primary-title title"></h1>
+                    <p class="artist-name paragraph"></p>
+                </div>
+                <div class="track-text">
+                    <input type="range" class="track-slider slider" value="0" max="100" step="0.1" />
+                    <div class="distributor">
+                        <span class="current-time paragraph"></span>
+                        <span class="total-time paragraph"></span>
+                    </div>
+                </div>
+                <div class="distributor">
+                    <button type="button" class="shuffle-button ghost-button icon-button button">Shuf</button>
+                    <button type="button" class="previous-button ghost-button icon-button button">Prev</button>
+                    <button type="button" class="track-play-button play-button ghost-button icon-button button">
+                        Play
+                    </button>
+                    <button type="button" class="next-button ghost-button icon-button button">Next</button>
+                    <button type="button" class="track-loop-button ghost-button icon-button button">Loop</button>
                 </div>
             </div>
         </main>

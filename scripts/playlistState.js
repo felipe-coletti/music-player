@@ -1,9 +1,7 @@
 import { updatePlayerVisibility } from './utils.js'
+import { shuffleButtons, playlistLoopButton as loopButton } from './controls.js'
 
 const STORAGE_KEY = 'playlistState'
-
-const shuffleButtons = document.querySelectorAll('.shuffle-button')
-const loopButton = document.getElementById('playlist-loop-button')
 
 export const playlistState = {
     playlist: [],
