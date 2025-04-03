@@ -13,6 +13,7 @@ const shuffleButtons = document.querySelectorAll('.shuffle-button')
 const loopPlaylistButton = document.getElementById('playlist-loop-button')
 const loopTrackButton = document.getElementById('track-loop-button')
 const progressBar = document.getElementById('progress-bar')
+const trackProgressInner = document.getElementById('track-progress-inner')
 export const currentTimeDisplay = document.getElementById('current-time')
 export const totalTimeDisplay = document.getElementById('total-time')
 
@@ -119,6 +120,7 @@ export const setupAudioEvents = () => {
 
         const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100
         progressBar.value = progress
+        trackProgressInner.style.width = `${progress}%`
 
         currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime)
         totalTimeDisplay.textContent = formatTime(audioPlayer.duration)

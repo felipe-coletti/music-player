@@ -31,3 +31,7 @@
 .playing .icon-button {
     color: var(--color-background);
 }
+
+.track .ghost-button {
+    visibility: visible;
+}

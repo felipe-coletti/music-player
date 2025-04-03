@@ -142,6 +142,16 @@
     gap: 0.5rem;
 }
 
+.progress {
+    background-color: var(--color-hover);
+    height: 5px;
+}
+
+.progress-inner {
+    background-color: var(--color-accent);
+    height: 100%;
+}
+
 #modal-container {
     align-items: center;
     background-color: var(--color-backdrop);
@@ -215,10 +225,6 @@
 
     .track-text {
         width: 100%;
-    }
-
-    .track .ghost-button {
-        visibility: visible !important;
     }
 
     .controls,
