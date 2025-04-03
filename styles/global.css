@@ -6,6 +6,7 @@
     --color-floating-background: #ffffff85;
     --color-hover: #00000010;
     --color-primary-text: #000;
+    --color-shadow: #00000040;
     --color-secondary-text: #555;
 }
 
@@ -168,16 +169,9 @@
     z-index: 1;
 }
 
-.modal {
-    background-color: var(--color-background);
-    box-shadow: 0 0 5px 2px var(--color-hover);
-    display: flex;
-    flex-direction: column;
+#add-track-modal {
     gap: 1rem;
-    max-width: 400px;
     padding: 1rem;
-    position: relative;
-    width: 100%;
 }
 
 .form {
@@ -207,7 +201,7 @@
     display: flex;
 }
 
-#mobile-player {
+#mobile-player-modal {
     display: none;
     left: 0;
     height: 100vh;
@@ -217,9 +211,32 @@
     z-index: 1;
 }
 
-#mobile-player .track-cover {
+#mobile-player-modal .track-cover {
     height: unset;
     width: 100%;
+}
+
+.modal {
+    background-color: var(--color-background);
+    box-shadow: 0 0 5px 2px var(--color-hover);
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    position: relative;
+    width: 100%;
+}
+
+#close-mobile-player {
+    left: 1rem;
+    position: absolute;
+    top: 1rem;
+}
+
+#mobile-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
 }
 
 @media screen and (max-width: 800px) {
@@ -242,7 +259,7 @@
         display: flex !important;
     }
 
-    #mobile-player.open {
+    #mobile-player-modal.open {
         display: flex;
     }
 }

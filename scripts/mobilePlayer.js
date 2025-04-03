@@ -1,5 +1,5 @@
 const player = document.getElementById('player')
-const mobilePlayer = document.getElementById('mobile-player')
+const mobilePlayer = document.getElementById('mobile-player-modal')
 const closeModalButton = document.getElementById('close-mobile-player')
 
 const openModal = () => {
