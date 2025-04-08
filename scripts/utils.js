@@ -10,23 +10,18 @@ const trackNames = document.querySelectorAll('.track-name')
 const artistNames = document.querySelectorAll('.artist-name')
 export const volumeControl = document.getElementById('volume-control')
 
-export const formatTime = (seconds, format) => {
+export const formatTime = (seconds, format = 'short') => {
     const hours = Math.floor(seconds / 3600)
     const minutes = Math.floor((seconds % 3600) / 60)
     const remainingSeconds = Math.floor(seconds % 60)
 
-    if (hours > 0) {
-        if (format == 'long') {
-            return `${hours}h ${minutes}m ${remainingSeconds}s`
-        } else if (format == 'short') {
-            return `${hours}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`
-        }
-    }
+    const pad = (n) => n.toString().padStart(2, '0')
 
-    if (format == 'long') {
-        return `${minutes}m ${remainingSeconds}s`
-    } else if (format == 'short') {
-        return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`
+    if (format === 'long') {
+        return hours > 0 ? `${hours}h ${minutes}m ${remainingSeconds}s` : `${minutes}m ${remainingSeconds}s`
+    }
+    if (format === 'short') {
+        return hours > 0 ? `${hours}:${pad(minutes)}:${pad(remainingSeconds)}` : `${minutes}:${pad(remainingSeconds)}`
     }
 }
 
