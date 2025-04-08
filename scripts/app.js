@@ -2,7 +2,7 @@ import { audioPlayer, formatTime, isValidId, updateTrackInfo, updatePlayerVisibi
 import { renderPlaylist } from './playlist.js'
 import { playlistState, loadPlaylist } from './playlistState.js'
 import { currentTimeDisplays, totalTimeDisplays, setupControlEvents, setupAudioEvents } from './controls.js'
-import { trackState } from './trackState.js'
+import { setDisplayVolume, trackState } from './trackState.js'
 import { updateRangeProgress } from './slider.js'
 import { volumeControl } from './controls.js'
 
@@ -12,11 +12,13 @@ const fetchPlaylist = () => {
 }
 
 const loadVolume = () => {
-    audioPlayer.volume = trackState.volume
-    volumeControl.value = trackState.volume * 100
     audioPlayer.loop = trackState.isLooping
 
-    updateRangeProgress(volumeControl)
+    if (!trackState.isMuted) {
+        setDisplayVolume(trackState.volume)
+    } else {
+        setDisplayVolume(0)
+    }
 }
 
 const initApp = () => {

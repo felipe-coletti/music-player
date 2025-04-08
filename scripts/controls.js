@@ -140,6 +140,7 @@ export const setupAudioEvents = () => {
         const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100
         trackSliders.forEach((slider) => {
             slider.value = progress
+            updateRangeProgress(slider)
         })
         trackProgressInner.style.width = `${progress}%`
 
@@ -148,10 +149,6 @@ export const setupAudioEvents = () => {
         })
         totalTimeDisplays.forEach((display) => {
             display.textContent = formatTime(audioPlayer.duration, 'short')
-        })
-
-        trackSliders.forEach((slider) => {
-            updateRangeProgress(slider)
         })
     })
 
@@ -167,7 +164,7 @@ export const setupAudioEvents = () => {
     })
 
     volumeControl.addEventListener('input', (e) => {
-        setVolume(e.target.value / 100)
+        setVolume(e.target.value)
     })
 
     audioPlayer.addEventListener('ended', () => {

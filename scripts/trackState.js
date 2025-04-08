@@ -1,11 +1,12 @@
 import { audioPlayer } from './utils.js'
 import { trackLoopButtons as loopButtons, volumeButtons, volumeControl } from './controls.js'
+import { updateRangeProgress } from './slider.js'
 
 const STORAGE_KEY = 'trackState'
 
 export const trackState = {
     isLooping: false,
-    volume: 1,
+    volume: 100,
     isMuted: false,
 }
 
@@ -34,15 +35,19 @@ export const toggleLoop = () => {
 
 export const setVolume = (newVolume) => {
     trackState.volume = newVolume
-    //audioPlayer.volume = newVolume
+
+    if (trackState.isMuted && newVolume > 0) {
+        trackState.isMuted = false
+    }
 
     setDisplayVolume(newVolume)
-    saveState()
 }
 
 export const setDisplayVolume = (newVolume) => {
-    audioPlayer.volume = newVolume
-    volumeControl.value = newVolume * 100
+    audioPlayer.volume = newVolume / 100
+    volumeControl.value = newVolume
+
+    updateRangeProgress(volumeControl)
 
     volumeButtons.forEach((button) => {
         if (volumeControl.value == 0) {
