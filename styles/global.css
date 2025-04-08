@@ -98,18 +98,13 @@
     bottom: 0;
     box-shadow: 0 -2px 5px 0 var(--color-hover);
     display: none;
-    flex-direction: column;
     left: 0;
+    padding: 1rem;
     position: sticky;
     width: 100%;
     z-index: 1;
 }
 
-#player-content {
-    padding: 1rem;
-}
-
-#player-content,
 .distributor {
     align-items: center;
     display: flex;
@@ -119,7 +114,7 @@
 }
 
 .track-cover {
-    height: 56px;
+    height: 64px;
 }
 
 .cover {
@@ -247,6 +242,29 @@
 
     .track-text {
         width: 100%;
+    }
+
+    #player {
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+    }
+
+    #player .track-info {
+        gap: 0;
+        height: 72px;
+        width: 100%;
+    }
+
+    #player .current-track-cover {
+        height: 100%;
+    }
+
+    #player .distributor {
+        gap: 0.75rem;
+        height: 100%;
+        overflow-y: auto;
+        padding: 0.75rem;
     }
 
     .track > :first-child,
