@@ -169,11 +169,6 @@
     z-index: 1;
 }
 
-#add-track-modal {
-    gap: 1rem;
-    padding: 1rem;
-}
-
 .form {
     display: flex;
     flex-direction: column;
@@ -226,17 +221,17 @@
     width: 100%;
 }
 
-#close-mobile-player {
-    left: 1rem;
-    position: absolute;
-    top: 1rem;
-}
-
-#mobile-controls {
+.modal-content {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
+}
+
+#close-mobile-player {
+    left: 1rem;
+    position: absolute;
+    top: 1rem;
 }
 
 @media screen and (max-width: 800px) {
