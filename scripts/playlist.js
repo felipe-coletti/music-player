@@ -136,9 +136,9 @@ export const renderPlaylist = () => {
     const trackIndexInPlaylist = playlistState.playlist.findIndex((track) => track.id === playlistState.currentTrackId)
 
     playlistInfo.textContent =
-        trackIndexInPlaylist >= 0
+        playlistState.playlist.length > 0
             ? `${trackIndexInPlaylist + 1} / ${playlistState.playlist.length}`
-            : `${playlistState.playlist.length}`
+            : `${playlistState.playlist.length} músicas`
 
     Promise.all(durationPromises).then(() => {
         if (playlistDuration > 0) {
