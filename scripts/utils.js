@@ -1,6 +1,7 @@
 import { renderPlaylist } from './playlist.js'
 import { trackState } from './trackState.js'
 import { playlistState, setCurrentTrackId } from './playlistState.js'
+import { updatePlayButtons } from './controls.js'
 
 export const audioPlayer = document.getElementById('audio-player')
 const player = document.getElementById('player')
@@ -64,6 +65,7 @@ export const playTrack = (trackId) => {
 
     audioPlayer.load()
     audioPlayer.play().catch((error) => console.error('Erro ao tentar tocar a música:', error))
+    updatePlayButtons(false)
 
     renderPlaylist()
 }
