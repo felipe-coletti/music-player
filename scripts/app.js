@@ -1,9 +1,10 @@
-import { audioPlayer, volumeControl, formatTime, isValidId, updateTrackInfo, updatePlayerVisibility } from './utils.js'
+import { audioPlayer, formatTime, isValidId, updateTrackInfo, updatePlayerVisibility } from './utils.js'
 import { renderPlaylist } from './playlist.js'
 import { playlistState, loadPlaylist } from './playlistState.js'
 import { currentTimeDisplays, totalTimeDisplays, setupControlEvents, setupAudioEvents } from './controls.js'
 import { trackState } from './trackState.js'
 import { updateRangeProgress } from './slider.js'
+import { volumeControl } from './controls.js'
 
 const fetchPlaylist = () => {
     loadPlaylist()

@@ -1,7 +1,7 @@
-import { audioPlayer, isValidId, playCurrentTrack, formatTime, volumeControl, playTrack } from './utils.js'
+import { audioPlayer, isValidId, playCurrentTrack, formatTime, playTrack } from './utils.js'
 import { renderPlaylist } from './playlist.js'
 import { playlistState, setPlaylistOrder, toggleShuffle, toggleLoop as loopPlaylist } from './playlistState.js'
-import { trackState, toggleLoop as loopTrack, setVolume } from './trackState.js'
+import { trackState, toggleLoop as loopTrack, setVolume, toggleMute } from './trackState.js'
 import { updateRangeProgress } from './slider.js'
 
 const playButtons = document.querySelectorAll('.play-button')
@@ -12,6 +12,8 @@ const nextButtons = document.querySelectorAll('.next-button')
 export const shuffleButtons = document.querySelectorAll('.shuffle-button')
 export const playlistLoopButton = document.getElementById('playlist-loop-button')
 export const trackLoopButtons = document.querySelectorAll('.track-loop-button')
+export const volumeButtons = document.querySelectorAll('.volume-button')
+export const volumeControl = document.getElementById('volume-control')
 const trackSliders = document.querySelectorAll('.track-slider')
 const trackProgressInner = document.getElementById('track-progress-inner')
 export const currentTimeDisplays = document.querySelectorAll('.current-time')
@@ -160,7 +162,13 @@ export const setupAudioEvents = () => {
         })
     })
 
-    volumeControl.addEventListener('input', (e) => setVolume(e.target.value / 100))
+    volumeButtons.forEach((button) => {
+        button.addEventListener('click', () => toggleMute())
+    })
+
+    volumeControl.addEventListener('input', (e) => {
+        setVolume(e.target.value / 100)
+    })
 
     audioPlayer.addEventListener('ended', () => {
         const currentTrackIndex = playlistState.playlistOrder.indexOf(playlistState.currentTrackId)

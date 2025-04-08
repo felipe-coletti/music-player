@@ -1,4 +1,4 @@
-import { isValidId, playTrack, formatTime } from './utils.js'
+import { playTrack, formatTime } from './utils.js'
 import { playlistState, addTrack, removeTrack } from './playlistState.js'
 import { closeModal } from './modal.js'
 

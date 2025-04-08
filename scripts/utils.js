@@ -8,7 +8,6 @@ const player = document.getElementById('player')
 const currentTrackCovers = document.querySelectorAll('.current-track-cover')
 const trackNames = document.querySelectorAll('.track-name')
 const artistNames = document.querySelectorAll('.artist-name')
-export const volumeControl = document.getElementById('volume-control')
 
 export const formatTime = (seconds, format = 'short') => {
     const hours = Math.floor(seconds / 3600)
