@@ -34,10 +34,10 @@ const initApp = () => {
         }
 
         currentTimeDisplays.forEach((display) => {
-            display.textContent = formatTime(0)
+            display.textContent = formatTime(0, 'short')
         })
         totalTimeDisplays.forEach((display) => {
-            display.textContent = formatTime(0)
+            display.textContent = formatTime(0, 'short')
         })
         updatePlayerVisibility()
     }

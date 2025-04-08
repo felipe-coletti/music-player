@@ -112,7 +112,7 @@ export const renderPlaylist = () => {
         const durationPromise = new Promise((resolve) => {
             audio.addEventListener('loadedmetadata', () => {
                 const durationElement = listItem.querySelector('.track-duration')
-                durationElement.textContent = formatTime(audio.duration)
+                durationElement.textContent = formatTime(audio.duration, 'short')
                 playlistDuration += audio.duration
                 resolve()
             })
@@ -142,7 +142,7 @@ export const renderPlaylist = () => {
 
     Promise.all(durationPromises).then(() => {
         if (playlistDuration > 0) {
-            playlistInfo.textContent += `, ${formatTime(playlistDuration)}`
+            playlistInfo.textContent += `, ${formatTime(playlistDuration, 'long')}`
         }
     })
 

@@ -128,7 +128,7 @@ export const setupControlEvents = () => {
 export const setupAudioEvents = () => {
     audioPlayer.addEventListener('loadedmetadata', () => {
         totalTimeDisplays.forEach((display) => {
-            display.textContent = formatTime(audioPlayer.duration)
+            display.textContent = formatTime(audioPlayer.duration, 'short')
         })
     })
 
@@ -142,10 +142,10 @@ export const setupAudioEvents = () => {
         trackProgressInner.style.width = `${progress}%`
 
         currentTimeDisplays.forEach((display) => {
-            display.textContent = formatTime(audioPlayer.currentTime)
+            display.textContent = formatTime(audioPlayer.currentTime, 'short')
         })
         totalTimeDisplays.forEach((display) => {
-            display.textContent = formatTime(audioPlayer.duration)
+            display.textContent = formatTime(audioPlayer.duration, 'short')
         })
 
         trackSliders.forEach((slider) => {

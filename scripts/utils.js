@@ -10,16 +10,24 @@ const trackNames = document.querySelectorAll('.track-name')
 const artistNames = document.querySelectorAll('.artist-name')
 export const volumeControl = document.getElementById('volume-control')
 
-export const formatTime = (seconds) => {
+export const formatTime = (seconds, format) => {
     const hours = Math.floor(seconds / 3600)
     const minutes = Math.floor((seconds % 3600) / 60)
     const remainingSeconds = Math.floor(seconds % 60)
 
     if (hours > 0) {
-        return `${hours}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`
+        if (format == 'long') {
+            return `${hours}h ${minutes}m ${remainingSeconds}s`
+        } else if (format == 'short') {
+            return `${hours}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`
+        }
     }
 
-    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`
+    if (format == 'long') {
+        return `${minutes}m ${remainingSeconds}s`
+    } else if (format == 'short') {
+        return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`
+    }
 }
 
 export const isValidId = (id) => playlistState.playlistOrder.includes(id)
