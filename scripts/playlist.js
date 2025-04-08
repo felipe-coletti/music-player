@@ -126,7 +126,7 @@ export const renderPlaylist = () => {
 
     playlistInfo.textContent =
         trackIndexInPlaylist >= 0
-            ? `${trackIndexInPlaylist + 1}/${playlistState.playlist.length}`
+            ? `${trackIndexInPlaylist + 1} / ${playlistState.playlist.length}`
             : `${playlistState.playlist.length}`
 
     Promise.all(durationPromises).then(() => {

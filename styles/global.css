@@ -245,6 +245,7 @@
         width: 100%;
     }
 
+    .track .paragraph:first-child,
     .controls,
     #volume-container {
         display: none;
