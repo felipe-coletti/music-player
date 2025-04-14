@@ -21,7 +21,7 @@
     background-color: var(--color-background);
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh;
 }
 
 #playlist-header {
@@ -77,10 +77,12 @@
 }
 
 #playlist-content {
-    list-style: none;
+    align-items: center;
     display: flex;
     flex-direction: column;
     height: 100%;
+    justify-content: center;
+    list-style: none;
     width: 100%;
 }
 

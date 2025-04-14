@@ -63,6 +63,14 @@ const updatePlaylistCover = () => {
 }
 
 export const renderPlaylist = () => {
+    if (playlistState.playlist.length === 0) {
+        const message = document.createElement('p')
+        message.classList.add('paragraph')
+        message.textContent = 'A sua playlist está vazia. Adicione algumas músicas!'
+        playlistElement.appendChild(message)
+        return
+    }
+
     const fragment = document.createDocumentFragment()
     let playlistDuration = 0
     const durationPromises = []
@@ -122,7 +130,7 @@ export const renderPlaylist = () => {
 
         listItem.setAttribute('data-track-id', track.id)
         listItem.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('remove-button')) {
+            if (!e.target.closest('.remove-button')) {
                 playTrack(track.id)
             }
         })
@@ -150,7 +158,7 @@ export const renderPlaylist = () => {
 }
 
 playlistElement.addEventListener('click', (e) => {
-    if (e.target.classList.contains('remove-button')) {
+    if (e.target.closest('.remove-button')) {
         e.stopPropagation()
 
         const trackIdToRemove = Number(e.target.closest('.track').dataset.trackId)
