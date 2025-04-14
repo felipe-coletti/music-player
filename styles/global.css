@@ -194,10 +194,6 @@
     width: 100%;
 }
 
-.mobile {
-    display: none !important;
-}
-
 #modal-container.open,
 #player.open {
     display: flex;
@@ -241,6 +237,10 @@
     top: 1rem;
 }
 
+.mobile {
+    display: none;
+}
+
 @media screen and (max-width: 800px) {
     .playlist-info {
         align-items: center;
@@ -282,7 +282,7 @@
     }
 
     .mobile {
-        display: flex !important;
+        display: flex;
     }
 
     #mobile-player-modal.open {
