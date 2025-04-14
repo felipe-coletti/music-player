@@ -61,7 +61,7 @@ export const playTrack = (trackId) => {
     if (!track) return
 
     audioPlayer.src = track.src
-    audioPlayer.volume = trackState.volume
+    audioPlayer.volume = trackState.volume / 100
 
     updateTrackInfo(track)
 
