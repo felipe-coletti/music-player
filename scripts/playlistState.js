@@ -1,4 +1,4 @@
-import { updatePlayerVisibility } from './utils.js'
+import { audioPlayer, updatePlayerVisibility, updateTrackInfo } from './utils.js'
 import { shuffleButtons, playlistLoopButton as loopButton } from './controls.js'
 
 const STORAGE_KEY = 'playlistState'
@@ -78,10 +78,12 @@ export const addTrack = (track) => {
 }
 
 export const removeTrack = (trackId) => {
+    const isCurrentTrack = playlistState.currentTrackId === trackId
+
     playlistState.playlist = playlistState.playlist.filter((track) => track.id !== trackId)
     playlistState.playlistOrder = playlistState.playlistOrder.filter((id) => id !== trackId)
 
-    if (playlistState.currentTrackId === trackId) {
+    if (isCurrentTrack) {
         playlistState.currentTrackId = null
         audioPlayer.src = ''
         updateTrackInfo(null)

@@ -19,7 +19,7 @@ export const handleAddTrack = () => {
     const track = {
         id:
             playlistState.playlist.length > 0
-                ? playlistState.playlist[playlistState.playlist.length - 1].id + 1 * Date.now()
+                ? (playlistState.playlist[playlistState.playlist.length - 1].id + 1) * Date.now()
                 : 0,
         src: trackSrcInput.value.replace(/^"|"$/g, ''),
         name: trackNameInput.value,
@@ -29,7 +29,6 @@ export const handleAddTrack = () => {
 
     addTrack(track)
     renderPlaylist()
-
     closeModal()
 
     trackCoverInput.value = ''
@@ -40,6 +39,7 @@ export const handleAddTrack = () => {
 
 document.getElementById('add-track-form').addEventListener('submit', (e) => {
     e.preventDefault()
+
     handleAddTrack()
 })
 
@@ -47,6 +47,7 @@ const updatePlaylistCover = () => {
     if (playlistState.playlist.length > 0) {
         const firstTrack = playlistState.playlist[0]
         const image = new Image()
+
         image.src = firstTrack.cover || 'assets/images/default-cover.jpg'
 
         image.onload = () => {
@@ -69,6 +70,8 @@ export const renderPlaylist = () => {
 
     if (isEmpty) {
         playlistElement.innerHTML = '<p class="paragraph">A sua playlist está vazia. Adicione algumas músicas!</p>'
+        updatePlaylistCover()
+
         return
     }
 
@@ -81,6 +84,7 @@ export const renderPlaylist = () => {
         const isPlaying = track.id === playlistState.currentTrackId
 
         listItem.classList.add('track')
+
         if (isPlaying) listItem.classList.add('playing')
 
         listItem.innerHTML = `
@@ -121,8 +125,11 @@ export const renderPlaylist = () => {
         const durationPromise = new Promise((resolve) => {
             audio.addEventListener('loadedmetadata', () => {
                 const durationElement = listItem.querySelector('.track-duration')
+
                 durationElement.textContent = formatTime(audio.duration, 'short')
+
                 playlistDuration += audio.duration
+
                 resolve()
             })
         })
@@ -144,10 +151,9 @@ export const renderPlaylist = () => {
 
     const trackIndexInPlaylist = playlistState.playlist.findIndex((track) => track.id === playlistState.currentTrackId)
 
-    playlistInfo.textContent =
-        playlistState.playlist.length > 0
-            ? `${trackIndexInPlaylist + 1} / ${playlistState.playlist.length}`
-            : `${playlistState.playlist.length} músicas`
+    playlistInfo.textContent = !isEmpty
+        ? `${trackIndexInPlaylist + 1} / ${playlistState.playlist.length}`
+        : `${playlistState.playlist.length} músicas`
 
     Promise.all(durationPromises).then(() => {
         if (playlistDuration > 0) {

@@ -29,6 +29,19 @@ export const isValidId = (id) => playlistState.playlistOrder.includes(id)
 export const playCurrentTrack = () => playTrack(playlistState.currentTrackId)
 
 export const updateTrackInfo = (track) => {
+    if (!track) {
+        currentTrackCovers.forEach((trackCover) => {
+            trackCover.src = 'assets/images/default-cover.jpg'
+        })
+        trackNames.forEach((trackName) => {
+            trackName.textContent = ''
+        })
+        artistNames.forEach((artistName) => {
+            artistName.textContent = ''
+        })
+        return
+    }
+
     const image = new Image()
     image.src = track.cover || 'assets/images/default-cover.jpg'
 
