@@ -2,7 +2,7 @@ import { playTrack, formatTime } from './utils.js'
 import { playlistState, addTrack, removeTrack } from './playlistState.js'
 import { closeModal } from './modal.js'
 
-const playlistElement = document.getElementById('playlist-content')
+const playlistElement = document.getElementById('playlist-container')
 const playlistInfo = document.getElementById('playlist-info')
 const playlistCover = document.getElementById('playlist-cover')
 const trackCoverInput = document.getElementById('track-cover-input')
@@ -63,11 +63,12 @@ const updatePlaylistCover = () => {
 }
 
 export const renderPlaylist = () => {
-    if (playlistState.playlist.length === 0) {
-        const message = document.createElement('p')
-        message.classList.add('paragraph')
-        message.textContent = 'A sua playlist está vazia. Adicione algumas músicas!'
-        playlistElement.appendChild(message)
+    const isEmpty = playlistState.playlist.length === 0
+
+    playlistElement.classList.toggle('empty-playlist-message', isEmpty)
+
+    if (isEmpty) {
+        playlistElement.innerHTML = '<p class="paragraph">A sua playlist está vazia. Adicione algumas músicas!</p>'
         return
     }
 
