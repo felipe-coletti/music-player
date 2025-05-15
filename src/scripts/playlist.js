@@ -11,92 +11,89 @@ const artistNameInput = document.getElementById('artist-name-input')
 const trackSrcInput = document.getElementById('track-src-input')
 
 export const handleAddTrack = () => {
-    if (!trackSrcInput.value || !trackNameInput.value || !artistNameInput.value) {
-        alert('Preencha todos os campos obrigatórios!')
-        return
-    }
+	if (!trackSrcInput.value || !trackNameInput.value || !artistNameInput.value) {
+		alert('Preencha todos os campos obrigatórios!')
+		return
+	}
 
-    const track = {
-        id:
-            playlistState.playlist.length > 0
-                ? (playlistState.playlist[playlistState.playlist.length - 1].id + 1) * Date.now()
-                : 0,
-        src: trackSrcInput.value.replace(/^"|"$/g, ''),
-        name: trackNameInput.value,
-        artist: artistNameInput.value,
-        cover: trackCoverInput.value || 'assets/images/default-cover.jpg',
-    }
+	const track = {
+		id: playlistState.playlist.length > 0 ? (playlistState.playlist[playlistState.playlist.length - 1].id + 1) * Date.now() : 0,
+		src: trackSrcInput.value.replace(/^"|"$/g, ''),
+		name: trackNameInput.value,
+		artist: artistNameInput.value,
+		cover: trackCoverInput.value || 'src/assets/images/default-cover.jpg'
+	}
 
-    addTrack(track)
-    renderPlaylist()
-    closeModal()
+	addTrack(track)
+	renderPlaylist()
+	closeModal()
 
-    trackCoverInput.value = ''
-    trackNameInput.value = ''
-    artistNameInput.value = ''
-    trackSrcInput.value = ''
+	trackCoverInput.value = ''
+	trackNameInput.value = ''
+	artistNameInput.value = ''
+	trackSrcInput.value = ''
 }
 
-document.getElementById('add-track-form').addEventListener('submit', (e) => {
-    e.preventDefault()
+document.getElementById('add-track-form').addEventListener('submit', e => {
+	e.preventDefault()
 
-    handleAddTrack()
+	handleAddTrack()
 })
 
 const updatePlaylistCover = () => {
-    if (playlistState.playlist.length > 0) {
-        const firstTrack = playlistState.playlist[0]
-        const image = new Image()
+	if (playlistState.playlist.length > 0) {
+		const firstTrack = playlistState.playlist[0]
+		const image = new Image()
 
-        image.src = firstTrack.cover || 'assets/images/default-cover.jpg'
+		image.src = firstTrack.cover || 'src/assets/images/default-cover.jpg'
 
-        image.onload = () => {
-            playlistCover.src = image.src
-        }
+		image.onload = () => {
+			playlistCover.src = image.src
+		}
 
-        image.onerror = () => {
-            console.warn('Capa inválida')
-            playlistCover.src = 'assets/images/default-cover.jpg'
-        }
-    } else {
-        playlistCover.src = 'assets/images/default-cover.jpg'
-    }
+		image.onerror = () => {
+			console.warn('Capa inválida')
+			playlistCover.src = 'src/assets/images/default-cover.jpg'
+		}
+	} else {
+		playlistCover.src = 'src/assets/images/default-cover.jpg'
+	}
 }
 
 export const renderPlaylist = () => {
-    const isEmpty = playlistState.playlist.length === 0
+	const isEmpty = playlistState.playlist.length === 0
 
-    playlistElement.classList.toggle('empty-playlist-message', isEmpty)
+	playlistElement.classList.toggle('empty-playlist-message', isEmpty)
 
-    if (isEmpty) {
-        playlistElement.innerHTML = '<p class="paragraph">A sua playlist está vazia. Adicione algumas músicas!</p>'
-        updatePlaylistCover()
+	if (isEmpty) {
+		playlistElement.innerHTML = '<p class="paragraph">A sua playlist está vazia. Adicione algumas músicas!</p>'
+		updatePlaylistCover()
 
-        return
-    }
+		return
+	}
 
-    const fragment = document.createDocumentFragment()
-    let playlistDuration = 0
-    const durationPromises = []
+	const fragment = document.createDocumentFragment()
+	let playlistDuration = 0
+	const durationPromises = []
 
-    playlistState.playlist.forEach((track, index) => {
-        const listItem = document.createElement('li')
-        const isPlaying = track.id === playlistState.currentTrackId
+	playlistState.playlist.forEach((track, index) => {
+		const listItem = document.createElement('li')
+		const isPlaying = track.id === playlistState.currentTrackId
 
-        listItem.classList.add('track')
+		listItem.classList.add('track')
 
-        if (isPlaying) listItem.classList.add('playing')
+		if (isPlaying) listItem.classList.add('playing')
 
-        listItem.innerHTML = `
+		listItem.innerHTML = `
             ${
-                isPlaying
-                    ? `
+				isPlaying
+					? `
                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M21.409 9.353a2.998 2.998 0 0 1 0 5.294L8.597 21.614C6.534 22.737 4 21.277 4 18.968V5.033c0-2.31 2.534-3.769 4.597-2.648z" />
                         </svg>
                     `
-                    : `<p class="paragraph">${index + 1}</p>`
-            }
+					: `<p class="paragraph">${index + 1}</p>`
+			}
             <div class="track-info">
                 <img class="track-cover cover" loading="lazy" />
                 <div class="track-text">
@@ -114,63 +111,61 @@ export const renderPlaylist = () => {
             </div>
         `
 
-        listItem.querySelector('.track-cover').src = 'assets/images/default-cover.jpg'
+		listItem.querySelector('.track-cover').src = 'src/assets/images/default-cover.jpg'
 
-        if (track.cover) {
-            listItem.querySelector('.track-cover').src = track.cover
-        }
+		if (track.cover) {
+			listItem.querySelector('.track-cover').src = track.cover
+		}
 
-        const audio = new Audio(track.src)
+		const audio = new Audio(track.src)
 
-        const durationPromise = new Promise((resolve) => {
-            audio.addEventListener('loadedmetadata', () => {
-                const durationElement = listItem.querySelector('.track-duration')
+		const durationPromise = new Promise(resolve => {
+			audio.addEventListener('loadedmetadata', () => {
+				const durationElement = listItem.querySelector('.track-duration')
 
-                durationElement.textContent = formatTime(audio.duration, 'short')
+				durationElement.textContent = formatTime(audio.duration, 'short')
 
-                playlistDuration += audio.duration
+				playlistDuration += audio.duration
 
-                resolve()
-            })
-        })
+				resolve()
+			})
+		})
 
-        durationPromises.push(durationPromise)
+		durationPromises.push(durationPromise)
 
-        listItem.setAttribute('data-track-id', track.id)
-        listItem.addEventListener('click', (e) => {
-            if (!e.target.closest('.remove-button')) {
-                playTrack(track.id)
-            }
-        })
+		listItem.setAttribute('data-track-id', track.id)
+		listItem.addEventListener('click', e => {
+			if (!e.target.closest('.remove-button')) {
+				playTrack(track.id)
+			}
+		})
 
-        fragment.appendChild(listItem)
-    })
+		fragment.appendChild(listItem)
+	})
 
-    playlistElement.innerHTML = ''
-    playlistElement.appendChild(fragment)
+	playlistElement.innerHTML = ''
+	playlistElement.appendChild(fragment)
 
-    const trackIndexInPlaylist = playlistState.playlist.findIndex((track) => track.id === playlistState.currentTrackId)
+	const trackIndexInPlaylist = playlistState.playlist.findIndex(track => track.id === playlistState.currentTrackId)
 
-    playlistInfo.textContent = !isEmpty
-        ? `${trackIndexInPlaylist + 1} / ${playlistState.playlist.length}`
-        : `${playlistState.playlist.length} músicas`
+	playlistInfo.textContent = !isEmpty ? `${trackIndexInPlaylist + 1} / ${playlistState.playlist.length}` : `${playlistState.playlist.length} músicas`
 
-    Promise.all(durationPromises).then(() => {
-        if (playlistDuration > 0) {
-            playlistInfo.textContent += `, ${formatTime(playlistDuration, 'long')}`
-        }
-    })
+	Promise.all(durationPromises).then(() => {
+		if (playlistDuration > 0) {
+			playlistInfo.textContent += `, ${formatTime(playlistDuration, 'long')}`
+		}
+	})
 
-    updatePlaylistCover()
+	updatePlaylistCover()
 }
 
-playlistElement.addEventListener('click', (e) => {
-    if (e.target.closest('.remove-button')) {
-        e.stopPropagation()
+playlistElement.addEventListener('click', e => {
+	if (e.target.closest('.remove-button')) {
+		e.stopPropagation()
 
-        const trackIdToRemove = Number(e.target.closest('.track').dataset.trackId)
+		const trackIdToRemove = Number(e.target.closest('.track').dataset.trackId)
 
-        removeTrack(trackIdToRemove)
-        renderPlaylist()
-    }
+		removeTrack(trackIdToRemove)
+		renderPlaylist()
+	}
 })
