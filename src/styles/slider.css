@@ -1,28 +1,28 @@
 .slider {
-    appearance: none;
-    border-radius: 5px;
-    cursor: pointer;
-    height: 5px;
-    margin-block: 5px;
-    outline: none;
-    transition: background 0.3s;
+	appearance: none;
+	border-radius: 5px;
+	cursor: pointer;
+	height: 5px;
+	margin-block: 5px;
+	outline: none;
+	transition: background 0.3s;
 }
 
 .slider::-webkit-slider-thumb {
-    appearance: none;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+	appearance: none;
+	border-radius: 50%;
+	background: var(--color-accent);
+	cursor: pointer;
+	height: 15px;
+	transition: background 0.3s, transform 0.2s;
+	width: 15px;
 }
 
 .slider::-moz-range-thumb {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+	border-radius: 50%;
+	background: var(--color-accent);
+	cursor: pointer;
+	height: 15px;
+	transition: background 0.3s, transform 0.2s;
+	width: 15px;
 }
