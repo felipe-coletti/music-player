@@ -2,10 +2,10 @@
 	--color-accent: #b85293;
 	--color-backdrop: #ffffff30;
 	--color-background: #fff;
+	--color-background-blur: #ffffff85;
 	--color-border: #ccc;
 	--color-hover: #00000010;
 	--color-shadow: #00000040;
-	--color-surface: #ffffff85;
 	--color-text-primary: #000;
 	--color-text-secondary: #555;
 }
@@ -66,7 +66,7 @@
 
 #playlist-title {
 	backdrop-filter: blur(32px);
-	background-color: var(--color-surface);
+	background-color: var(--color-background-blur);
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
@@ -107,7 +107,7 @@
 
 #player {
 	backdrop-filter: blur(32px);
-	background-color: var(--color-surface);
+	background-color: var(--color-background-blur);
 	bottom: 0;
 	box-shadow: 0 -2px 5px 0 var(--color-hover);
 	display: none;
