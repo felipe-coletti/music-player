@@ -3,11 +3,11 @@
 	--color-backdrop: #ffffff30;
 	--color-background: #fff;
 	--color-border: #ccc;
-	--color-floating-background: #ffffff85;
 	--color-hover: #00000010;
-	--color-primary-text: #000;
-	--color-secondary-text: #555;
 	--color-shadow: #00000040;
+	--color-surface: #ffffff85;
+	--color-text-primary: #000;
+	--color-text-secondary: #555;
 }
 
 * {
@@ -60,13 +60,13 @@
 }
 
 .paragraph {
-	color: var(--color-secondary-text);
+	color: var(--color-text-secondary);
 	font-size: 0.875rem;
 }
 
 #playlist-title {
 	backdrop-filter: blur(32px);
-	background-color: var(--color-floating-background);
+	background-color: var(--color-surface);
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
@@ -102,12 +102,12 @@
 }
 
 .title {
-	color: var(--color-primary-text);
+	color: var(--color-text-primary);
 }
 
 #player {
 	backdrop-filter: blur(32px);
-	background-color: var(--color-floating-background);
+	background-color: var(--color-surface);
 	bottom: 0;
 	box-shadow: 0 -2px 5px 0 var(--color-hover);
 	display: none;
@@ -198,7 +198,7 @@
 }
 
 .label {
-	color: var(--color-primary-text);
+	color: var(--color-text-primary);
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;

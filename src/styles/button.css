@@ -1,45 +1,45 @@
 .filled-button {
-    background-color: var(--color-accent);
-    color: var(--color-background);
+	background-color: var(--color-accent);
+	color: var(--color-background);
 }
 
 .ghost-button {
-    background-color: transparent;
-    color: var(--color-secondary-text);
+	background-color: transparent;
+	color: var(--color-text-secondary);
 }
 
 .ghost-button:hover {
-    background-color: var(--color-hover);
+	background-color: var(--color-hover);
 }
 
 .floating-button {
-    background-color: var(--color-shadow);
-    color: var(--color-background);
+	background-color: var(--color-shadow);
+	color: var(--color-background);
 }
 
 .icon-button {
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    font-size: 1.25rem;
-    padding: 0.5rem;
+	aspect-ratio: 1 / 1;
+	border-radius: 50%;
+	font-size: 1.25rem;
+	padding: 0.5rem;
 }
 
 .text-button {
-    border-radius: 0.25rem;
-    font-size: 0.875rem;
-    font-weight: bold;
-    padding-block: 0.75rem;
-    padding-inline: 1rem;
+	border-radius: 0.25rem;
+	font-size: 0.875rem;
+	font-weight: bold;
+	padding-block: 0.75rem;
+	padding-inline: 1rem;
 }
 
 .button {
-    align-items: center;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
+	align-items: center;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
 }
 
 .button.active {
-    color: var(--color-accent);
+	color: var(--color-accent);
 }
