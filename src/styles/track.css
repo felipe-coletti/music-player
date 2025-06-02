@@ -1,38 +1,38 @@
 .track {
-    align-items: center;
-    cursor: pointer;
-    display: flex;
-    gap: 1rem;
-    padding: 1rem;
-    width: 100%;
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+	gap: 1rem;
+	padding: 1rem;
+	width: 100%;
 }
 
 .track:not(.playing):hover {
-    background-color: var(--color-hover);
+	background-color: var(--color-hover);
 }
 
 .track > :nth-child(2) {
-    width: 100%;
+	width: 100%;
 }
 
 .track .ghost-button {
-    visibility: hidden;
+	visibility: hidden;
 }
 
 .track:hover .ghost-button {
-    visibility: visible;
+	visibility: visible;
 }
 
 .playing {
-    background-color: var(--color-accent);
+	background-color: var(--color-background-active);
 }
 
 .playing .title,
 .playing .paragraph,
 .playing .icon-button {
-    color: var(--color-background);
+	color: var(--color-accent);
 }
 
 .track .ghost-button {
-    visibility: visible;
+	visibility: visible;
 }
