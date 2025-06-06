@@ -2,7 +2,6 @@
 <html lang="pt-br">
 	<head>
 		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE-edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="shortcut icon" href="src/assets/images/favicon.ico" type="image/x-icon" />
 		<title>Music player</title>
@@ -30,7 +29,11 @@
 			<div id="playlist-title">
 				<audio id="audio-player"></audio>
 				<div class="button-group">
-					<button type="button" id="playlist-play-button" class="play-button filled-button icon-button button">
+					<button
+						type="button"
+						id="playlist-play-button"
+						class="play-button filled-button icon-button button"
+					>
 						<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
 							<path
 								fill="currentColor"
@@ -75,7 +78,10 @@
 							<h1 class="track-name secondary-title title"></h1>
 							<p class="artist-name paragraph"></p>
 						</div>
-						<button type="button" class="track-play-button play-button ghost-button icon-button button mobile">
+						<button
+							type="button"
+							class="track-play-button play-button ghost-button icon-button button mobile"
+						>
 							<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
 								<path
 									fill="currentColor"
@@ -202,7 +208,14 @@
 			<div id="mobile-player-modal" class="modal">
 				<button type="button" id="close-mobile-player" class="floating-button icon-button button">
 					<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-						<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19 9l-7 6l-7-6" />
+						<path
+							fill="none"
+							stroke="currentColor"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="1.5"
+							d="m19 9l-7 6l-7-6"
+						/>
 					</svg>
 				</button>
 				<img class="current-track-cover track-cover cover" loading="lazy" />
