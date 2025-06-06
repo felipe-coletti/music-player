@@ -27,6 +27,7 @@
 	background-color: var(--color-background-active);
 }
 
+.playing .icon,
 .playing .title,
 .playing .paragraph,
 .playing .icon-button {
