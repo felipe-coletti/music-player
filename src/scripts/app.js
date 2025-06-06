@@ -1,12 +1,12 @@
 import { audioPlayer, formatTime, isValidId, updateTrackInfo, updatePlayerVisibility } from './utils.js'
-import { renderPlaylist } from './playlist.js'
+import { setupPlaylist } from './playlist.js'
 import { playlistState, loadPlaylist } from './playlistState.js'
 import { currentTimeDisplays, totalTimeDisplays, setupControlEvents, setupAudioEvents } from './controls.js'
 import { setDisplayVolume, trackState } from './trackState.js'
 
 const fetchPlaylist = () => {
 	loadPlaylist()
-	renderPlaylist()
+	setupPlaylist()
 }
 
 const loadVolume = () => {
@@ -25,7 +25,7 @@ const initApp = () => {
 	setupControlEvents()
 	setupAudioEvents()
 
-	if (playlistState.currentTrackId && isValidId(playlistState.currentTrackId)) {
+	if (playlistState.currentTrackId !== null && isValidId(playlistState.currentTrackId)) {
 		const track = playlistState.playlist.find(track => track.id === playlistState.currentTrackId)
 
 		updateTrackInfo(track)
@@ -40,6 +40,7 @@ const initApp = () => {
 		totalTimeDisplays.forEach(display => {
 			display.textContent = formatTime(0, 'short')
 		})
+
 		updatePlayerVisibility()
 	}
 }
