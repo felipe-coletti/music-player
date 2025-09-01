@@ -18,6 +18,19 @@
 	font-family: sans-serif;
 }
 
+::-webkit-scrollbar {
+	width: 15px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--color-hover);
+	border-radius: 0;
+}
+
 #main {
 	background-color: var(--color-background);
 	display: flex;
